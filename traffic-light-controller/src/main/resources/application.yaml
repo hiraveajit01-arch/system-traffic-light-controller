@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: traffic-light-controller
+
+logging:
+  level:
+    root: INFO
+    com.example.traffic: DEBUG
