@@ -55,5 +55,16 @@ public class TrafficLightServiceTest {
         assertEquals(1, service.getHistory().size());
     }
 
+    //Test case to not allow state change when controller is paused
+    @Test
+    void shouldNotAllowStateChangeWhenPaused() {
+
+        service.pauseController();
+
+        org.junit.jupiter.api.Assertions.assertThrows(RuntimeException.class,
+                () -> service.changeState(Direction.NORTH, TrafficLightState.GREEN));
+    }
+
+
 
 }
