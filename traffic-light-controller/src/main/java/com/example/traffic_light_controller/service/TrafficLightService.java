@@ -1,39 +1,52 @@
 package com.example.traffic_light_controller.service;
-
+import com.example.traffic_light_controller.entity.TrafficHistory;
 import com.example.traffic_light_controller.enums.ControllerStatus;
 import com.example.traffic_light_controller.enums.Direction;
-import com.example.traffic_light_controller.entity.TrafficHistory;
 import com.example.traffic_light_controller.enums.TrafficLightState;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 @Service
 public class TrafficLightService {
-    private final ConflictValidator validator = new ConflictValidator();
-    private final HistoryService historyService = new HistoryService();
-    private final ControllerStateService controllerStateService = new ControllerStateService();
-
 
     private final Map<Direction, TrafficLightState> states =
             new EnumMap<>(Direction.class);
 
+
+    private final ConflictValidator validator;
+    private final ControllerStateService controllerStateService;
+    private final HistoryService historyService;
+
+
     public TrafficLightService() {
+        this.validator = new ConflictValidator();
+        this.controllerStateService = new ControllerStateService();
+        this.historyService = new HistoryService();
+
         for (Direction direction : Direction.values()) {
             states.put(direction, TrafficLightState.RED);
         }
     }
-    public Map<Direction, TrafficLightState> getCurrentStates() {
-        return Collections.unmodifiableMap(states);
+
+
+    public TrafficLightService(ConflictValidator validator,
+                               ControllerStateService controllerStateService,
+                               HistoryService historyService) {
+        this.validator = validator;
+        this.controllerStateService = controllerStateService;
+        this.historyService = historyService;
+
+        for (Direction direction : Direction.values()) {
+            states.put(direction, TrafficLightState.RED);
+        }
     }
 
     public synchronized void changeState(Direction direction,
                                          TrafficLightState newState) {
 
         if (controllerStateService.getStatus() == ControllerStatus.PAUSED) {
-            throw new RuntimeException("Controller is paused");
+            throw new RuntimeException();
         }
 
         TrafficLightState previousState = states.get(direction);
@@ -45,6 +58,9 @@ public class TrafficLightService {
         historyService.record(direction, previousState, newState);
     }
 
+    public Map<Direction, TrafficLightState> getCurrentStates() {
+        return Collections.unmodifiableMap(states);
+    }
 
     public List<TrafficHistory> getHistory() {
         return historyService.getHistory();
@@ -57,5 +73,4 @@ public class TrafficLightService {
     public void resumeController() {
         controllerStateService.resume();
     }
-
 }
