@@ -10,8 +10,9 @@ import java.util.EnumMap;
 import java.util.Map;
 @Service
 public class TrafficLightService {
+    private final ConflictValidator validator = new ConflictValidator();
 
-        private final Map<Direction, TrafficLightState> states =
+    private final Map<Direction, TrafficLightState> states =
             new EnumMap<>(Direction.class);
 
     public TrafficLightService() {
@@ -23,17 +24,10 @@ public class TrafficLightService {
         return Collections.unmodifiableMap(states);
     }
 
+
     public void changeState(Direction direction, TrafficLightState newState) {
 
-        if (newState == TrafficLightState.GREEN) {
-            for (Map.Entry<Direction, TrafficLightState> entry : states.entrySet()) {
-                if (!entry.getKey().equals(direction)
-                        && entry.getValue() == TrafficLightState.GREEN) {
-                    throw new RuntimeException("Green signal is conflicting");
-                }
-            }
-        }
-
+        validator.validate(direction, newState, states);
         states.put(direction, newState);
     }
 
