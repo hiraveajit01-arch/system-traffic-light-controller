@@ -24,7 +24,18 @@ public class TrafficLightService {
     }
 
     public void changeState(Direction direction, TrafficLightState newState) {
+
+        if (newState == TrafficLightState.GREEN) {
+            for (Map.Entry<Direction, TrafficLightState> entry : states.entrySet()) {
+                if (!entry.getKey().equals(direction)
+                        && entry.getValue() == TrafficLightState.GREEN) {
+                    throw new RuntimeException("Green signal is conflicting");
+                }
+            }
+        }
+
         states.put(direction, newState);
     }
+
 
 }
