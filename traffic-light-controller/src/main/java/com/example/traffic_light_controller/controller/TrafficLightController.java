@@ -30,5 +30,16 @@ public class TrafficLightController {
         return service.getHistory();
     }
 
+    @PostMapping("/pause")
+    public void pause() {
+        service.pauseController();
+    }
+
+    @PostMapping("/resume")
+    public void resume() {
+        service.resumeController();
+    }
+
+
 }
 
