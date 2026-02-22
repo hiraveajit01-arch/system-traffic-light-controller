@@ -1,7 +1,5 @@
 package com.example.traffic_light_controller.controller;
 
-package com.example.traffic.controller;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
