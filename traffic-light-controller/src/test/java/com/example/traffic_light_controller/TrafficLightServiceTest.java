@@ -37,5 +37,15 @@ public class TrafficLightServiceTest {
         assertEquals(TrafficLightState.GREEN,
                 service.getCurrentStates().get(Direction.NORTH));
     }
+    //Test case to not allow conflicting state change
+    @Test
+    void shouldNotAllowConflictingGreenSignals() {
+
+        service.changeState(Direction.NORTH, TrafficLightState.GREEN);
+
+        org.junit.jupiter.api.Assertions.assertThrows(RuntimeException.class,
+                () -> service.changeState(Direction.SOUTH, TrafficLightState.GREEN));
+    }
+
 
 }
