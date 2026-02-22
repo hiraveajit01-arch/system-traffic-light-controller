@@ -1,5 +1,9 @@
 package com.example.traffic_light_controller;
 
+import com.example.traffic_light_controller.entity.Direction;
+import com.example.traffic_light_controller.entity.TrafficLightState;
+import com.example.traffic_light_controller.service.TrafficLightService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -8,6 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TrafficLightServiceTest {
 
+    private TrafficLightService service;
+
+
+    @BeforeEach
+    void setup() {
+        service = new TrafficLightService();
+    }
     //Test case to initialize all lights to RED initially
     @Test
     void shouldInitializeAllDirectionsToRed() {
