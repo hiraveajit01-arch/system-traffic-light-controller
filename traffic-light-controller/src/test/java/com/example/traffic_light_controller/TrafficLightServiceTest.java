@@ -29,4 +29,13 @@ public class TrafficLightServiceTest {
         assertEquals(TrafficLightState.RED, states.get(Direction.EAST));
         assertEquals(TrafficLightState.RED, states.get(Direction.WEST));
     }
+    //Test case to change the state of any direction
+    @Test
+    void shouldChangeStateSuccessfully() {
+        service.changeState(Direction.NORTH, TrafficLightState.GREEN);
+
+        assertEquals(TrafficLightState.GREEN,
+                service.getCurrentStates().get(Direction.NORTH));
+    }
+
 }
