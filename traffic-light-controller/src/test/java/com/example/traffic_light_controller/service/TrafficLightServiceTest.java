@@ -1,8 +1,7 @@
-package com.example.traffic_light_controller;
+package com.example.traffic_light_controller.service;
 
 import com.example.traffic_light_controller.entity.Direction;
 import com.example.traffic_light_controller.entity.TrafficLightState;
-import com.example.traffic_light_controller.service.TrafficLightService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
