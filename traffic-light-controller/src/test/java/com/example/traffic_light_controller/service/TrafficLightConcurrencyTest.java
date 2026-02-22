@@ -1,7 +1,7 @@
 package com.example.traffic_light_controller.service;
 
-import com.example.traffic_light_controller.entity.Direction;
-import com.example.traffic_light_controller.entity.TrafficLightState;
+import com.example.traffic_light_controller.enums.Direction;
+import com.example.traffic_light_controller.enums.TrafficLightState;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.Callable;

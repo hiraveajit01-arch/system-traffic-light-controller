@@ -1,5 +1,6 @@
 package com.example.traffic_light_controller.service;
 
+import com.example.traffic_light_controller.enums.ControllerStatus;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

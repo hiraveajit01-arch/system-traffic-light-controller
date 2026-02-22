@@ -1,9 +1,8 @@
 package com.example.traffic_light_controller.service;
 
-import com.example.traffic_light_controller.entity.Direction;
+import com.example.traffic_light_controller.enums.Direction;
 import com.example.traffic_light_controller.entity.TrafficHistory;
-import com.example.traffic_light_controller.entity.TrafficLightState;
-import lombok.RequiredArgsConstructor;
+import com.example.traffic_light_controller.enums.TrafficLightState;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
