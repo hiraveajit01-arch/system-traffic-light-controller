@@ -25,5 +25,10 @@ public class TrafficLightController {
         service.changeState(request.getDirection(),
                 request.getNewState());
     }
+    @GetMapping("/history")
+    public Object getHistory() {
+        return service.getHistory();
+    }
+
 }
 
