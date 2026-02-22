@@ -45,6 +45,15 @@ public class TrafficLightServiceTest {
         org.junit.jupiter.api.Assertions.assertThrows(RuntimeException.class,
                 () -> service.changeState(Direction.SOUTH, TrafficLightState.GREEN));
     }
+    //Test case to add history in traffic light change
+
+    @Test
+    void shouldRecordHistoryWhenStateChanges() {
+
+        service.changeState(Direction.NORTH, TrafficLightState.GREEN);
+
+        assertEquals(1, service.getHistory().size());
+    }
 
 
 }
