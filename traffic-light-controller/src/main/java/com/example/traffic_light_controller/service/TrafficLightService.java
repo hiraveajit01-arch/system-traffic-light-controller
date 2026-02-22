@@ -22,4 +22,9 @@ public class TrafficLightService {
     public Map<Direction, TrafficLightState> getCurrentStates() {
         return Collections.unmodifiableMap(states);
     }
+
+    public void changeState(Direction direction, TrafficLightState newState) {
+        states.put(direction, newState);
+    }
+
 }
