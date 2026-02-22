@@ -3,6 +3,7 @@ import com.example.traffic_light_controller.entity.TrafficHistory;
 import com.example.traffic_light_controller.enums.ControllerStatus;
 import com.example.traffic_light_controller.enums.Direction;
 import com.example.traffic_light_controller.enums.TrafficLightState;
+import com.example.traffic_light_controller.exception.ControllerPausedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +47,7 @@ public class TrafficLightService {
                                          TrafficLightState newState) {
 
         if (controllerStateService.getStatus() == ControllerStatus.PAUSED) {
-            throw new RuntimeException();
+            throw new ControllerPausedException();
         }
 
         TrafficLightState previousState = states.get(direction);
